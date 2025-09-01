@@ -18,3 +18,27 @@ SELECT
 FROM bookings b
 INNER JOIN users u 
     ON b.user_id = u.user_id;
+
+
+# Practice Subqueries
+
+This project demonstrates how to use **correlated** and **non-correlated subqueries** in SQL within the **alx-airbnb-database** project.
+
+---
+
+## Queries Implemented
+
+### 1. Non-Correlated Subquery
+```sql
+SELECT 
+    p.property_id,
+    p.property_name,
+    p.location
+FROM properties p
+WHERE p.property_id IN (
+    SELECT r.property_id
+    FROM reviews r
+    GROUP BY r.property_id
+    HAVING AVG(r.rating) > 4.0
+);
+
