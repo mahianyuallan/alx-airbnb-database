@@ -19,7 +19,6 @@ FROM bookings b
 INNER JOIN users u 
     ON b.user_id = u.user_id;
 
-
 # Practice Subqueries
 
 This project demonstrates how to use **correlated** and **non-correlated subqueries** in SQL within the **alx-airbnb-database** project.
@@ -41,4 +40,25 @@ WHERE p.property_id IN (
     GROUP BY r.property_id
     HAVING AVG(r.rating) > 4.0
 );
+
+# Aggregations and Window Functions
+
+This project demonstrates how to use **SQL aggregation** and **window functions** to analyze booking and property data in the **alx-airbnb-database**.
+
+---
+
+## Queries Implemented
+
+### 1. Aggregation with COUNT + GROUP BY
+```sql
+SELECT 
+    u.user_id,
+    u.name,
+    COUNT(b.booking_id) AS total_bookings
+FROM users u
+LEFT JOIN bookings b 
+    ON u.user_id = b.user_id
+GROUP BY u.user_id, u.name
+ORDER BY total_bookings DESC;
+
 
